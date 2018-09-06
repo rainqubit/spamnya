@@ -1,3 +1,5 @@
+const escapeStringRegexp = require('escape-string-regexp')
+
 module.exports = {
   messageLog: [],
   message: '',
@@ -48,6 +50,9 @@ module.exports = {
     // message that just sent
     let currentMsg = this.message.content
     // check if its same with other messages
+
+    // escape regex string
+    currentMsg = escapeStringRegexp(currentMsg)
     let occurance = (msgContent.match(new RegExp(currentMsg, "g")) || []).length
     
     if (occurance >= amount) return true
