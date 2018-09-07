@@ -15,8 +15,8 @@ a spam detector for discord.js bots
       // when someone send 3 chats in less than a second
     }
 
-    if(spam.sameMessages(3)){
-      // when someone send 3 identical chats 
+    if(spam.sameMessages(3, 60000)){
+      // when someone send 3 identical chats within a minute
     }
   })
 
