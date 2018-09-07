@@ -1,3 +1,5 @@
+const escapeStringRegexp = require('escape-string-regexp')
+
 module.exports = {
   messageLog: [],
   message: '',
@@ -40,14 +42,23 @@ module.exports = {
   },
   /**
    * @param amount - Max treshold of same messages
+   * @param interval - The interval (in millisecond)
    */
-  sameMessages: function(amount){
+  sameMessages: function(amount, interval){
     // getting the messages of last message' author from log.. again
-    let msg = this.messageLog.filter(log => log.author == this.message.author.id)
+
+    // only get messages from within the interval given
+    let msg = this.messageLog.filter(log => (new Date) - log.timeStamp < interval)
+    // only messages from the current author
+    msg = msg.filter(log => log.author == this.message.author.id)
+
     let msgContent = msg.map(log => log.content).join(' ')
     // message that just sent
     let currentMsg = this.message.content
     // check if its same with other messages
+
+    // escape regex string
+    currentMsg = escapeStringRegexp(currentMsg)
     let occurance = (msgContent.match(new RegExp(currentMsg, "g")) || []).length
     
     if (occurance >= amount) return true

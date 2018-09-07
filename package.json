@@ -1,6 +1,6 @@
 {
   "name": "spamnya",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "spam detector for discord.js bots",
   "main": "index.js",
   "author": "rainqubit",
@@ -9,5 +9,8 @@
     "url": "https://github.com/rainqubit/spamnya.git"
   },
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "escape-string-regexp": "^1.0.5"
+  }
 }
