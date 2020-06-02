@@ -1,4 +1,4 @@
-const escapeStringRegexp = require('escape-string-regexp')
+const { escape } = require('./utils')
 
 module.exports = {
   messageLog: [],
@@ -58,7 +58,7 @@ module.exports = {
     // check if its same with other messages
 
     // escape regex string
-    currentMsg = escapeStringRegexp(currentMsg)
+    currentMsg = escape(currentMsg)
     let occurance = (msgContent.match(new RegExp(currentMsg, "g")) || []).length
     
     if (occurance >= amount) return true
